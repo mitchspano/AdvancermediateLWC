@@ -1,0 +1,82 @@
+<template>
+  <lightning-tabset>
+    <lightning-tab label="Quick Start Product Packages">
+      <div class="slds-scrollable" style="height:15rem">
+        <lightning-layout multiple-rows="true">
+          <template for:each={packageTiles} for:item="item">
+          
+            <lightning-layout-item
+              size="4"
+              padding="around-small"
+              key={item.id}
+            >
+              <div class="lgc-bg slds-box">
+                <lightning-card title={item.label}>
+                  <lightning-icon
+                    slot="actions"
+                    icon-name="custom:custom57"
+                  ></lightning-icon>
+                  <div class="slds-scrollable" style="height:5rem">
+                    <template for:each={item.products} for:item="product">
+                      <template if:true={product.isBold}>
+                        <b key={product.id}>
+                          <p class="slds-align_absolute-center">
+                            {product.name}
+                          </p>
+                        </b>
+                      </template>
+                      <template if:false={product.isBold}>
+                        <p key={product.id} class="slds-align_absolute-center">
+                          {product.name}
+                        </p>
+                      </template>
+                    </template>
+                  </div>
+                  <lightning-button-group class="slds-align_absolute-center">
+                    <template if:true={item.showAddAll}>
+                      <c-event-button
+                        detail={item.productPackageId}
+                        event-name="addall"
+                        name="Add All"
+                        label="Add All"
+                        variant="brand"
+                        onaddall={addAllProducts}
+                        class="slds-p-around_xx-small"
+                      >
+                      </c-event-button>
+                    </template>
+                    <template if:true={item.showRemoveAll}>
+                      <c-event-button
+                        detail={item.productPackageId}
+                        event-name="removeall"
+                        name="Remove All"
+                        label="Remove All"
+                        variant="destructive"
+                        onremoveall={removeAll}
+                        class="slds-p-around_xx-small"
+                      >
+                      </c-event-button>
+                    </template>
+                    <template if:true={item.showAddRemaining}>
+                      <c-event-button
+                        detail={item.productPackageId}
+                        event-name="addremaining"
+                        name="Add Remaining"
+                        label="Add Remaining"
+                        variant="brand"
+                        onaddremaining={addRemaining}
+                        class="slds-p-around_xx-small"
+                      >
+                      </c-event-button>
+                    </template>
+                  </lightning-button-group>
+                </lightning-card>
+              </div>
+            
+            </lightning-layout-item>
+          </template>
+        </lightning-layout>
+      </div>
+    </lightning-tab>
+  </lightning-tabset>
+</template>

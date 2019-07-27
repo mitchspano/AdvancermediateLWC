@@ -1,0 +1,133 @@
+<template>
+  <template if:true={pageLayout.data}>
+
+
+    <lightning-record-edit-form
+      record-id={recordId}
+      object-api-name={objectApiName}
+    >
+      <lightning-record-view-form
+        record-id={recordId}
+        object-api-name={objectApiName}
+      >
+        <lightning-card>
+          <template if:true={isVertical}>
+            <lightning-button
+              label="Edit"
+              onclick={setEditMode}
+              slot="actions"
+            ></lightning-button>
+            <lightning-button
+              label="Save"
+              onclick={clearEditMode}
+              slot="actions"
+            ></lightning-button>
+            <lightning-button
+              label="Cancel"
+              onclick={clearEditMode}
+              slot="actions"
+            ></lightning-button>
+
+            <template for:each={pageLayout.data.Sections} for:item="section">
+              <lightning-accordion
+                class="example-accordion"
+                active-section-name="A"
+                allow-multiple-sections-open="true"
+                key={section.id}
+              >
+                <lightning-accordion-section name="A" label={section.Label}>
+                  <div class="slds-grid slds-gutters slds-p-around_large">
+                    <template for:each={section.Columns} for:item="column">
+                      <div class="slds-col" key={column.id}>
+                        <template for:each={column.Fields} for:item="field">
+                          <template if:true={field.isBlankSpace}>
+                            is blank space!<br key={field.id} />
+                          </template>
+                          <template if:false={field.isBlankSpace}>
+                            <template if:true={editMode}>
+                              <lightning-input-field
+                                field-name={field.APIName}
+                                key={field.id}
+                              >
+                              </lightning-input-field>
+                            </template>
+                            <template if:false={editMode}>
+                              <lightning-output-field
+                                field-name={field.APIName}
+                                key={field.id}
+                              >
+                              </lightning-output-field>
+                            </template>
+                          </template>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </lightning-accordion-section>
+              </lightning-accordion>
+            </template>
+          </template>
+          <template if:true={isTab}>
+            <lightning-tabset>
+              <template for:each={pageLayout.data.Sections} for:item="section">
+                <lightning-tab key={section.id} label={section.Label}>
+
+                  <div class="slds-grid slds-gutters slds-p-around_large">
+                    <template for:each={section.Columns} for:item="column">
+                      <div class="slds-col" key={column.id}>
+                        <template for:each={column.Fields} for:item="field">
+                          <template if:true={field.isBlankSpace}>
+                            <div
+                              class="slds-form-element slds-grow slds-hint-parent override--slds-form-element"
+                              key={field.id}
+                            >
+                              <span
+                                class="test-id__field-value slds-form-element__static slds-grow  slds-is-empty is-read-only"
+                              >
+                              </span>
+                            </div>
+                          </template>
+                          <template if:false={field.isBlankSpace}>
+                            <template if:true={editMode}>
+                              <lightning-input-field
+                                field-name={field.APIName}
+                                key={field.id}
+                              >
+                              </lightning-input-field>
+                            </template>
+                            <template if:false={editMode}>
+                              <lightning-output-field
+                                field-name={field.APIName}
+                                key={field.id}
+                              >
+                              </lightning-output-field>
+                            </template>
+                          </template>
+                        </template>
+                      </div>
+                    </template></div
+                ></lightning-tab>
+              </template>
+            </lightning-tabset>
+            <div class="slds-align_absolute-center slds-p-top_medium">
+                <lightning-button-group>
+                  <lightning-button
+                    label="Edit"
+                    onclick={setEditMode}
+                  ></lightning-button>
+                  <lightning-button
+                    label="Save"
+                    onclick={clearEditMode}
+                  ></lightning-button>
+                  <lightning-button
+                    label="Cancel"
+                    onclick={clearEditMode}
+                  ></lightning-button>
+                </lightning-button-group>
+              </div>
+          </template>
+        </lightning-card>
+      </lightning-record-view-form>
+    </lightning-record-edit-form>
+  </template>
+</template>

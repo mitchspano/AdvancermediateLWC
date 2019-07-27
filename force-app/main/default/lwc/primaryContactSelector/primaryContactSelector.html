@@ -1,0 +1,57 @@
+<template>
+    <lightning-card title="Primary Contact Selector" icon-name="standard:contact">
+        <template if:true={contacts.data}>
+                <div class="slds-hide">
+                    {thisAccount}
+                </div>
+            <lightning-layout class="slds-m-around_medium">
+                
+                <!-- c-contact-list-item-bubbling emits a bubbling event so a single listener on a containing element works -->
+                <lightning-layout-item
+                    class="wide"
+                    oncontactselect={handleContactSelect}
+                >
+                    <template for:each={contacts.data} for:item="contact">
+                        <c-contact-list-item-bubbling
+                            key={contact.Id}
+                            contact={contact}
+                        ></c-contact-list-item-bubbling>
+                    </template>
+                </lightning-layout-item>
+                <lightning-layout-item class="slds-m-left_medium">
+                    <template if:true={selectedContact} class="slds-align_absolute-center" >
+                    
+                        <img
+                            src={selectedContact.Picture__c}
+                            alt="Profile photo"
+                        />
+                        <p>{selectedContact.Name}</p>
+                        <p>{selectedContact.Title}</p>
+                        <p>
+                            <lightning-formatted-phone
+                                value={selectedContact.Phone}
+                            ></lightning-formatted-phone>
+                        </p>
+                        <p>
+                            <lightning-formatted-email
+                                value={selectedContact.Email}
+                            ></lightning-formatted-email>
+                        </p>
+                        <template if:true={showMarkAsPrimary}>
+                                <lightning-button
+                                label="Mark As Primary"
+                                onclick={selectPrimary}
+                                >
+                                </lightning-button>
+                        
+                      </template>
+                    </template>
+                    
+                </lightning-layout-item>
+            </lightning-layout>
+        </template>
+        <template if:true={contacts.error}>
+            
+        </template>
+    </lightning-card>
+</template>

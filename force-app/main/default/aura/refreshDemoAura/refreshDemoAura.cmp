@@ -1,6 +1,0 @@
-<aura:component implements="force:hasRecordId,flexipage:availableForRecordHome">
-
-        <aura:handler event="force:refreshView" action="{!c.handleRefresh}" />
-        <lightning:button label="Refresh - Aura" onclick="{! c.forceRefreshView }"/>
-
-</aura:component>

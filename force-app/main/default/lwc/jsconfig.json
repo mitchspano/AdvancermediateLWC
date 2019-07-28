@@ -11,15 +11,6 @@
             "c/eventButton": [
                 "eventButton/eventButton.js"
             ],
-            "c/layoutExplorerLWC": [
-                "layoutExplorerLWC/layoutExplorerLWC.js"
-            ],
-            "c/lookup": [
-                "lookup/lookup.js"
-            ],
-            "c/pageLayout": [
-                "pageLayout/pageLayout.js"
-            ],
             "c/primaryContactSelector": [
                 "primaryContactSelector/primaryContactSelector.js"
             ],
@@ -31,12 +22,6 @@
             ],
             "c/refreshBrokerLWC": [
                 "refreshBrokerLWC/refreshBrokerLWC.js"
-            ],
-            "c/refreshDemo": [
-                "refreshDemo/refreshDemo.js"
-            ],
-            "c/sampleComponent": [
-                "sampleComponent/sampleComponent.js"
             ]
         },
         "experimentalDecorators": true

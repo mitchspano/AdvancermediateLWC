@@ -1,4 +1,0 @@
-<aura:component implements="lightning:isUrlAddressable">
-    
-    <c:layoutExplorerLWC></c:layoutExplorerLWC> 
-</aura:component>
